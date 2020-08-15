@@ -1,0 +1,10 @@
+{
+  "scripts": {
+    "get-wesnoth": "git clone https://github.com/wesnoth/wesnoth.git; rm -rf wesnoth/.git",
+    "extract": "node extract"
+  },
+  "dependencies": {
+    "fs-extra": "^9.0.1",
+    "ini": "^1.3.5"
+  }
+}
