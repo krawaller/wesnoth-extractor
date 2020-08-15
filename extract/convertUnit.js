@@ -80,13 +80,27 @@ module.exports = (unitcfg) => {
     /    /g,
     ""
   );
-  data.resistance = parseIni(res, [], "resistance");
+  data.resistance = Object.entries(parseIni(res, [], "resistance")).reduce(
+    (memo, [key, val]) => ({
+      ...memo,
+      [key]: +val,
+    }),
+    {}
+  );
 
   const def = ((unitcfg.match(defenseRegex) || [])[0] || "").replace(
     /    /g,
     ""
   );
-  data.defense = parseIni(def, [], "defense");
+  data.defense = Object.entries(parseIni(def, [], "defense")).reduce(
+    (memo, [key, val]) => ({
+      ...memo,
+      [key]: +val,
+    }),
+    {}
+  );
+
+  data.description = data.description || "";
 
   const adv = data["advances_to"];
   data["advances_to"] = !adv ? [] : adv.match(",") ? adv.split(/, */) : [adv];

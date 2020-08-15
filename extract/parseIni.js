@@ -24,7 +24,10 @@ module.exports = (raw, whitelist, top) => {
           : !isNaN(+val)
           ? +val
           : val
-          ? val.replace(/^_ ?["'](.*)["']?$/, "$1")
+          ? val
+              .replace(/^_ ?["'](.*)["']?$/, "$1")
+              .replace(/["']/g, "")
+              .replace(/^female\^/, "")
           : undefined;
     }
   } else {
